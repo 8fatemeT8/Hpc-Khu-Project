@@ -59,8 +59,8 @@ public class ApplicationWebSecurity extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers(
-				"/account/login",
-				"/account/register",
+				"/api/account/login",
+				"/api/account/register",
 				"/account/verify",
 				"/assets/scss/**",
 				"/assets/fonts/**",
