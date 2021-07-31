@@ -25,6 +25,16 @@ public class User extends EntityBase  implements UserDetails {
 	@Column(name = "enable")
 	private boolean enable = false;
 
+	private Boolean verify = false;
+
+	public boolean isVerify() {
+		return verify;
+	}
+
+	public void setVerify(boolean verify) {
+		this.verify = verify;
+	}
+
 	public String getUsername() {
 		return username;
 	}

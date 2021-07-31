@@ -2,7 +2,9 @@ package com.example.hpc.service;
 
 import com.example.hpc.model.domain.DomainBase;
 import com.example.hpc.model.dto.DtoBase;
+import com.example.hpc.model.dto.UserDto;
 import com.example.hpc.model.entity.EntityBase;
+import com.example.hpc.model.entity.User;
 import com.example.hpc.model.repository.RepositoryBase;
 import com.example.hpc.utils.exceptions.ErrorCodes;
 import com.example.hpc.utils.exceptions.ExceptionHandler;
@@ -11,6 +13,11 @@ import com.example.hpc.utils.hooks.BeforeDelete;
 import com.example.hpc.utils.hooks.BeforeUpdate;
 import com.example.hpc.utils.mapper.MapperBase;
 import com.example.hpc.utils.validation.Validations;
+import org.apache.catalina.core.ApplicationContext;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 public class ServiceBase<TEntity extends EntityBase, TDto extends DtoBase,
@@ -22,7 +29,6 @@ public class ServiceBase<TEntity extends EntityBase, TDto extends DtoBase,
 		this.repository = repository;
 		this.mapper = mapper;
 	}
-
 
 	public TDomain createAndUpdate(TDto dto) {
 		TEntity entity = mapper.toEntity(dto);
