@@ -26,7 +26,7 @@ public class UserAuthentication {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
-			final String token = jwtTokenUtil.generateToken(userDetailsService.loadUserByUsername(username));
+			final String token = jwtTokenUtil.generateToken(userDetailsService.loadUserByUsername(username),null);
 
 			return new JwtResponse(token);
 		} catch (DisabledException e) {

@@ -61,11 +61,11 @@ public class ApplicationWebSecurity extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().antMatchers(
 				"/api/account/login",
 				"/api/account/register",
-				"/account/verify",
+				"/api/account/verify",
 				"/assets/scss/**",
 				"/assets/fonts/**",
 				"/assets/images/**",
-				"api/account/forget-password"
+				"/api/account/forget-password"
 		).permitAll()
 				// all other requests need to be authenticated
 				.anyRequest().authenticated().and()
