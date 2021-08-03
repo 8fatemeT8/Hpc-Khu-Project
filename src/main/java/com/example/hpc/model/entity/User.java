@@ -2,12 +2,15 @@ package com.example.hpc.model.entity;
 
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.w3c.dom.stylesheets.LinkStyle;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.persistence.metamodel.StaticMetamodel;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -27,12 +30,24 @@ public class User extends EntityBase  implements UserDetails {
 
 	private Boolean verify = false;
 
-	public boolean isVerify() {
+	@ManyToOne
+	@JoinColumn(name = "role_id")
+	private Role role;
+
+	public Boolean getVerify() {
 		return verify;
 	}
 
-	public void setVerify(boolean verify) {
+	public void setVerify(Boolean verify) {
 		this.verify = verify;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	public String getUsername() {
@@ -65,7 +80,9 @@ public class User extends EntityBase  implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+		return authorities;
 	}
 
 	public String getPassword() {
