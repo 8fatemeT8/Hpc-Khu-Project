@@ -12,7 +12,7 @@ public class EntityBase {
 	private Long id;
 
 	@Column(name = "create_date")
-	private Instant createDate = new Date().toInstant();
+	private Instant createDate = Instant.now();
 
 	@Column(name = "update_date")
 	private Instant updateDate;
