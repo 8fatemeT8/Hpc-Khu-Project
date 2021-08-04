@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.Predicate;
 import java.util.List;
 
 @Component
@@ -15,7 +16,7 @@ public class PersonPredicate extends PredicateBase<Person, PersonCriteria>{
     }
 
     @Override
-    public List<Person> filter(PersonCriteria personCriteria, Pageable pageable) {
-        return null;
+    public List<Predicate> filter(PersonCriteria personCriteria) {
+        return predicates;
     }
 }
