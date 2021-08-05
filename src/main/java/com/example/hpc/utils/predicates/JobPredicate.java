@@ -4,11 +4,10 @@ import com.example.hpc.model.entity.Job;
 import com.example.hpc.model.entity.Job_;
 import com.example.hpc.model.entity.Person;
 import com.example.hpc.utils.criteria.JobCriteria;
-import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.Predicate;
 import java.util.List;
 
 @Component
@@ -22,7 +21,7 @@ public class JobPredicate extends PredicateBase<Job, JobCriteria> {
     }
 
     @Override
-    public List<Job> filter(JobCriteria jobCriteria) {
+    public List<Predicate> filter(JobCriteria jobCriteria) {
         if (jobCriteria.getName() != null) {
             addStringPredicate(jobCriteria.getName(), Job_.NAME);
         }
@@ -42,11 +41,16 @@ public class JobPredicate extends PredicateBase<Job, JobCriteria> {
             addIntegerPredicate(jobCriteria.getNodeNumber(), Job_.NODE_NUMBER);
         }
         if (jobCriteria.getPerson() != null) {
-            List<Person> persons = personPredicate.filter(jobCriteria.getPerson());
+            List<Person> persons = personPredicate.getResult(jobCriteria.getPerson());
             predicates.add(getValueIn(Job_.PERSON, persons));
         }
+        if (jobCriteria.getPlan() != null) {
+            addIntegerPredicate(jobCriteria.getPlan(), Job_.PLAN);
+        }
+        if (jobCriteria.getRamInGB() != null) {
+            addIntegerPredicate(jobCriteria.getRamInGB(), Job_.RAM_IN_GB);
+        }
 
-
-        return null;
+        return predicates;
     }
 }
