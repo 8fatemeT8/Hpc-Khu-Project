@@ -2,9 +2,8 @@ package com.example.hpc.utils.predicates;
 
 
 import com.example.hpc.model.entity.EntityBase;
-import com.example.hpc.model.entity.Job_;
-import com.example.hpc.utils.criteria.IdFilter;
-import com.example.hpc.utils.criteria.StringFilter;
+import com.example.hpc.utils.criteria.types.IdFilter;
+import com.example.hpc.utils.criteria.types.StringFilter;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +14,14 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.SingularAttribute;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-@Component
+/**
+ * this class makes the database query by the criteria fields
+ * @param <TEntity>
+ * @param <TCriteria>
+ */
 public abstract class PredicateBase<TEntity extends EntityBase, TCriteria> {
     @PersistenceContext
     protected final EntityManager entityManager;

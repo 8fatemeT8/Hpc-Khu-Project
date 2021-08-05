@@ -4,6 +4,7 @@ import com.example.hpc.model.domain.JobResultDomain;
 import com.example.hpc.model.dto.JobResultDto;
 import com.example.hpc.model.entity.JobResult;
 import com.example.hpc.model.repository.JobResultRepository;
+import com.example.hpc.service.bases.ServiceBase;
 import com.example.hpc.utils.mapper.JobResultMapper;
 import org.springframework.stereotype.Service;
 
