@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.service;
 
 import com.example.hpc.model.domain.AdminDomain;
@@ -14,3 +15,4 @@ public class AdminService extends ServiceBase<Admin, AdminDto, AdminDomain, Admi
         super(adminRepository, adminMapper);
     }
 }
+*/

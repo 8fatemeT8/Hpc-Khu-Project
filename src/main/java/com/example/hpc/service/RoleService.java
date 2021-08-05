@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.service;
 
 import com.example.hpc.model.domain.RoleDomain;
@@ -14,3 +15,4 @@ public class RoleService extends ServiceBase<Role, RoleDto, RoleDomain, RoleRepo
         super(roleRepository, roleMapper);
     }
 }
+*/

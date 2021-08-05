@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.utils.predicates;
 
 
@@ -89,3 +90,4 @@ public abstract class PredicateBase<TEntity extends EntityBase, TCriteria> {
             predicates.add(cb.isFalse(root.get(columnName)));
     }
 }
+*/

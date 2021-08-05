@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.service;
 
 import com.example.hpc.model.domain.TicketDomain;
@@ -14,3 +15,4 @@ public class TicketService extends ServiceBase<Ticket, TicketDto, TicketDomain, 
         super(ticketRepository, ticketMapper);
     }
 }
+*/

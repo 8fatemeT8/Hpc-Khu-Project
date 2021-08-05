@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.utils.predicates;
 
 import com.example.hpc.model.entity.Person;
@@ -20,3 +21,4 @@ public class PersonPredicate extends PredicateBase<Person, PersonCriteria>{
         return predicates;
     }
 }
+*/

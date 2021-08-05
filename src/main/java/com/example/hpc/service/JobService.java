@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.service;
 
 import com.example.hpc.model.domain.JobDomain;
@@ -14,3 +15,4 @@ public class JobService extends ServiceBase<Job, JobDto, JobDomain, JobRepositor
         super(jobRepository, jobMapper);
     }
 }
+*/

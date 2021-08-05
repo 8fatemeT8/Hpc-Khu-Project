@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.service;
 
 import com.example.hpc.model.domain.WalletDomain;
@@ -14,3 +15,4 @@ public class WalletService extends ServiceBase<Wallet, WalletDto, WalletDomain, 
         super(walletRepository, walletMapper);
     }
 }
+*/

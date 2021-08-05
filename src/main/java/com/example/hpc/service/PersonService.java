@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.service;
 
 import com.example.hpc.model.domain.PersonDomain;
@@ -14,3 +15,4 @@ public class PersonService extends ServiceBase<Person, PersonDto, PersonDomain, 
         super(personRepository, personMapper);
     }
 }
+*/

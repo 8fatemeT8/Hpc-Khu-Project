@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.service;
 
 import com.example.hpc.model.domain.TransactionDomain;
@@ -14,3 +15,4 @@ public class TransactionService extends ServiceBase<Transaction, TransactionDto,
         super(transactionRepository, transactionMapper);
     }
 }
+*/

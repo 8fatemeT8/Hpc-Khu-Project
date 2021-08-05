@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.service;
 
 import com.example.hpc.model.domain.DomainBase;
@@ -12,7 +13,7 @@ import com.example.hpc.utils.hooks.BeforeAdd;
 import com.example.hpc.utils.hooks.BeforeDelete;
 import com.example.hpc.utils.hooks.BeforeUpdate;
 import com.example.hpc.utils.mapper.MapperBase;
-import com.example.hpc.utils.predicates.PredicateBase;
+//import com.example.hpc.utils.predicates.PredicateBase;
 import com.example.hpc.utils.validation.Validations;
 import org.apache.catalina.core.ApplicationContext;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -67,3 +68,4 @@ public class ServiceBase<TEntity extends EntityBase, TDto extends DtoBase,
         return mapper.toDomainList(predicate.getResult(criteria, pageable));
     }
 }
+*/

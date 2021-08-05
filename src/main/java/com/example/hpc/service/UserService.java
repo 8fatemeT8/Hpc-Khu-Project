@@ -26,7 +26,7 @@ import java.time.Instant;
 import java.util.Optional;
 
 @Service
-public class UserService extends ServiceBase<User, UserDto, UserDomain, UserRepository, UserMapper> implements Validations<User>, BeforeAdd<User, UserDto>, BeforeUpdate<User, UserDto> {
+public class UserService /*extends ServiceBase<User, UserDto, UserDomain, UserRepository, UserMapper>*/ implements Validations<User>, BeforeAdd<User, UserDto>, BeforeUpdate<User, UserDto> {
 
     private UserRepository userRepository;
     private UserMapper userMapper;
@@ -36,10 +36,10 @@ public class UserService extends ServiceBase<User, UserDto, UserDomain, UserRepo
     private UserAuthentication userAuthentication;
     private JwtUserDetailsService jwtUserDetailsService;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder encoder,
+    public UserService(UserRepository userRepository/*, UserMapper userMapper*/, PasswordEncoder encoder,
                        EmailService emailService, JwtTokenUtil jwtTokenUtil, UserAuthentication userAuthentication,
                        JwtUserDetailsService jwtUserDetailsService) {
-        super(userRepository, userMapper);
+//        super(userRepository, userMapper);
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.encoder = encoder;
@@ -57,7 +57,7 @@ public class UserService extends ServiceBase<User, UserDto, UserDomain, UserRepo
     }
 
     public JwtResponse create(UserDto dto) {
-        createAndUpdate(dto);
+//        createAndUpdate(dto);
         return userAuthentication.authenticate(dto.getUsername(), dto.getPassword());
     }
 

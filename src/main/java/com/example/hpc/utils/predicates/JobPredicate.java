@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.utils.predicates;
 
 import com.example.hpc.model.entity.Job;
@@ -54,3 +55,4 @@ public class JobPredicate extends PredicateBase<Job, JobCriteria> {
         return predicates;
     }
 }
+*/
