@@ -1,4 +1,4 @@
-package com.example.hpc.service;
+package com.example.hpc.service.bases;
 
 import com.example.hpc.model.domain.DomainBase;
 import com.example.hpc.model.dto.DtoBase;
@@ -23,17 +23,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
-
+/**
+ * this class has the basic methods (add or update , get one, delete)
+ * @param <TEntity>
+ * @param <TDto>
+ * @param <TDomain>
+ * @param <TRepository>
+ * @param <TMapper>
+ */
 public class ServiceBase<TEntity extends EntityBase, TDto extends DtoBase,
-        TDomain extends DomainBase, TRepository extends RepositoryBase<TEntity>, TMapper extends MapperBase<TEntity, TDto, TDomain>, TCriteria, TPredicate extends PredicateBase<TEntity, TCriteria>> {
+        TDomain extends DomainBase, TRepository extends RepositoryBase<TEntity>,
+        TMapper extends MapperBase<TEntity, TDto, TDomain>> {
     private TRepository repository;
     private TMapper mapper;
-    private TPredicate predicate;
 
-    public ServiceBase(TRepository repository, TMapper mapper, TPredicate predicate) {
+    public ServiceBase(TRepository repository, TMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
-        this.predicate = predicate;
     }
 
     public TDomain createAndUpdate(TDto dto) {
@@ -63,7 +69,7 @@ public class ServiceBase<TEntity extends EntityBase, TDto extends DtoBase,
         repository.delete(entity);
     }
 
-    public List<TDomain> getAll(TCriteria criteria, Pageable pageable) {
-        return mapper.toDomainList(predicate.getResult(criteria, pageable));
+    public long size(){
+        return repository.count();
     }
 }
