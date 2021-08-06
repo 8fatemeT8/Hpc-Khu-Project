@@ -1,15 +1,23 @@
 package com.example.hpc.model.dto;
 
 public class RoleDto extends DtoBase{
-    private String roleName;
+    private Integer roleName;
 
     private String description;
 
-    public String getRoleName() {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public void setRoleName(Integer roleName) {
         this.roleName = roleName;
     }
 }

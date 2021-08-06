@@ -4,17 +4,15 @@ package com.example.hpc.model.entity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.*;
-import javax.persistence.metamodel.StaticMetamodel;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User extends EntityBase  implements UserDetails {
+public class User extends EntityBase implements UserDetails {
 
 	@Column(unique = true)
 	private String username;
@@ -80,9 +78,12 @@ public class User extends EntityBase  implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
+		if (role == null)
+			return null;
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+		authorities.add(new SimpleGrantedAuthority(role.getRoleName().getName()));
 		return authorities;
+//		return null;
 	}
 
 	public String getPassword() {

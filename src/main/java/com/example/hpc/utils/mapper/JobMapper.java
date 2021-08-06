@@ -6,6 +6,7 @@ import com.example.hpc.model.entity.Job;
 import com.example.hpc.utils.enums.ApplicationTypeConverter;
 import com.example.hpc.utils.enums.JobPlanConverter;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.WARN, uses = {ApplicationTypeConverter.class, JobPlanConverter.class, JobResultMapper.class})
@@ -14,4 +15,12 @@ public interface JobMapper extends MapperBase<Job, JobDto, JobDomain> {
     default Job createNew() {
         return new Job();
     }
+
+    @Override
+    @Mapping(target = "jobFile", ignore = true)
+    Job toEntity(JobDto dto);
+
+    @Override
+    @Mapping(target = "jobFile", ignore = true)
+    JobDto toDto(Job job);
 }

@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.config.jwt;
 
 import com.example.hpc.utils.exceptions.ExceptionHandler;
@@ -35,3 +36,4 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
 		return mapper.writeValueAsString(object);
 	}
 }
+*/
