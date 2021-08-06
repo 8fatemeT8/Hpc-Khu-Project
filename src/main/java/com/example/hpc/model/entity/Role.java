@@ -1,8 +1,9 @@
 package com.example.hpc.model.entity;
 
+import com.example.hpc.utils.enums.UserRoles;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -10,15 +11,15 @@ import javax.persistence.Table;
 public class Role  extends EntityBase{
 
     @Column(name = "role_name")
-    private String roleName;
+    private UserRoles roleName;
 
     private String description;
 
-    public String getRoleName() {
+    public UserRoles getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public void setRoleName(UserRoles roleName) {
         this.roleName = roleName;
     }
 

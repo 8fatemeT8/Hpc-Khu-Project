@@ -1,6 +1,6 @@
 package com.example.hpc.config;
 
-import com.example.hpc.config.jwt.ExceptionHandlerFilter;
+//import com.example.hpc.config.jwt.ExceptionHandlerFilter;
 import com.example.hpc.config.jwt.JwtAuthenticationEntryPoint;
 import com.example.hpc.config.jwt.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +25,14 @@ public class ApplicationWebSecurity extends WebSecurityConfigurerAdapter {
 
 	private JwtRequestFilter jwtRequestFilter;
 
-	private ExceptionHandlerFilter exceptionHandlerFilter;
+//	private ExceptionHandlerFilter exceptionHandlerFilter;
 
 	public ApplicationWebSecurity(JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, UserDetailsService jwtUserDetailsService,
-								  JwtRequestFilter jwtRequestFilter, ExceptionHandlerFilter exceptionHandlerFilter) {
+								  JwtRequestFilter jwtRequestFilter /*,ExceptionHandlerFilter exceptionHandlerFilter*/) {
 		this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
 		this.jwtUserDetailsService = jwtUserDetailsService;
 		this.jwtRequestFilter = jwtRequestFilter;
-		this.exceptionHandlerFilter = exceptionHandlerFilter;
+//		this.exceptionHandlerFilter = exceptionHandlerFilter;
 	}
 
 	@Autowired
@@ -60,7 +60,7 @@ public class ApplicationWebSecurity extends WebSecurityConfigurerAdapter {
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers(
 				"/api/account/login",
-				"/api/account/register",
+				"/api/person/account",
 				"/api/account/verify",
 				"/assets/scss/**",
 				"/assets/fonts/**",
@@ -74,6 +74,6 @@ public class ApplicationWebSecurity extends WebSecurityConfigurerAdapter {
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.addFilterAfter(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-				.addFilterBefore(exceptionHandlerFilter, JwtRequestFilter.class);
-	}
+//				.addFilterBefore(exceptionHandlerFilter, JwtRequestFilter.class);
+	;}
 }

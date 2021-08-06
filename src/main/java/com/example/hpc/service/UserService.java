@@ -21,8 +21,10 @@ import com.example.hpc.utils.mapper.UserMapper;
 import com.example.hpc.utils.predicates.UserPredicate;
 import com.example.hpc.utils.validation.ValidationUtils;
 import com.example.hpc.utils.validation.Validations;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import java.time.Instant;
@@ -40,10 +42,12 @@ public class UserService extends ServiceWithSearchBase<User, UserDto, UserDomain
 	private UserAuthentication userAuthentication;
 	private JwtUserDetailsService jwtUserDetailsService;
 	private final UserPredicate userPredicate;
+	private final RoleService roleService;
 
 	public UserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder encoder,
 					   EmailService emailService, JwtTokenUtil jwtTokenUtil, UserAuthentication userAuthentication,
-					   JwtUserDetailsService jwtUserDetailsService, UserPredicate userPredicate) {
+					   JwtUserDetailsService jwtUserDetailsService, UserPredicate userPredicate,RoleService roleService
+	) {
 		super(userRepository, userMapper, userPredicate);
 		this.userRepository = userRepository;
 		this.userMapper = userMapper;
@@ -53,6 +57,7 @@ public class UserService extends ServiceWithSearchBase<User, UserDto, UserDomain
 		this.userAuthentication = userAuthentication;
 		this.jwtUserDetailsService = jwtUserDetailsService;
 		this.userPredicate = userPredicate;
+		this.roleService = roleService;
 	}
 
 	@Override
@@ -60,6 +65,8 @@ public class UserService extends ServiceWithSearchBase<User, UserDto, UserDomain
 		if (userRepository.findByUsername(user.getUsername()).isPresent())
 			throw new ExceptionHandler("this username taken before", ErrorCodes.ERROR_CODE_USER_NAME_NOT_UNIQUE);
 
+		if (user.getRole() == null)
+			throw new ExceptionHandler("the role value must not be null", HttpStatus.NOT_ACCEPTABLE.value());
 	}
 
 	public JwtResponse create(UserDto dto) {
@@ -108,7 +115,10 @@ public class UserService extends ServiceWithSearchBase<User, UserDto, UserDomain
 
 
 	@Override
+	@Transactional
 	public void add(UserDto userDto, User user) {
+		user.setRole(roleService.getByRoleName(user.getRole().getRoleName()));
+
 		if (user.getEmail() != null) {
 			ThreadUtils.createThreadAndStart(() -> {
 				String token = jwtTokenUtil.generateToken(user, JwtTokenUtil.JWT_VERIFY_LIFE_TIME);

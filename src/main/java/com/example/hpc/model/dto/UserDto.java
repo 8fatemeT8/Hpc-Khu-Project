@@ -12,6 +12,16 @@ public class UserDto extends DtoBase {
 	@Email
 	private String email;
 
+	private RoleDto role;
+
+	public RoleDto getRole() {
+		return role;
+	}
+
+	public void setRole(RoleDto role) {
+		this.role = role;
+	}
+
 	public String getUsername() {
 		return username;
 	}

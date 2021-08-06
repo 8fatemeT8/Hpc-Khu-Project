@@ -6,6 +6,16 @@ public class UserDomain extends DomainBase {
 
 	private String email;
 
+	private RoleDomain role;
+
+	public RoleDomain getRole() {
+		return role;
+	}
+
+	public void setRole(RoleDomain role) {
+		this.role = role;
+	}
+
 	public String getUsername() {
 		return username;
 	}

@@ -5,7 +5,12 @@ public class WalletDto extends DtoBase{
 
     private Long credit;
 
-    private PersonDto person;
+    public WalletDto() {
+    }
+
+    public WalletDto(Long credit) {
+        this.credit = credit;
+    }
 
     public Long getCredit() {
         return credit;
@@ -15,11 +20,4 @@ public class WalletDto extends DtoBase{
         this.credit = credit;
     }
 
-    public PersonDto getPerson() {
-        return person;
-    }
-
-    public void setPerson(PersonDto person) {
-        this.person = person;
-    }
 }

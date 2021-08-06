@@ -1,9 +1,11 @@
 package com.example.hpc.model.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class JobDto extends DtoBase{
     private String  name;
 
-    private String jobFile;
+    private MultipartFile jobFile;
 
     private Boolean advanceMode;
 
@@ -27,11 +29,11 @@ public class JobDto extends DtoBase{
         this.name = name;
     }
 
-    public String getJobFile() {
+    public MultipartFile getJobFile() {
         return jobFile;
     }
 
-    public void setJobFile(String jobFile) {
+    public void setJobFile(MultipartFile jobFile) {
         this.jobFile = jobFile;
     }
 

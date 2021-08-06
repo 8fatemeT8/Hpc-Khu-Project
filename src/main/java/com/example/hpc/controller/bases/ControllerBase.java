@@ -7,6 +7,7 @@ import com.example.hpc.model.repository.RepositoryBase;
 import com.example.hpc.service.bases.ServiceBase;
 import com.example.hpc.utils.mapper.MapperBase;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -53,6 +54,7 @@ public class ControllerBase<TEntity extends EntityBase, TDto extends DtoBase, TD
 	 * @return ResponseEntity<TDomain>
 	 */
 	@PostMapping
+	@Transactional
 	public ResponseEntity<TDomain> create(@Valid @RequestBody TDto dto) {
 		return ResponseEntity.ok().body(service.createAndUpdate(dto));
 	}

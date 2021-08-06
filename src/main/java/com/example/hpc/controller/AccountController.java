@@ -27,7 +27,8 @@ public class AccountController {
 
 	@PostMapping("/register")
 	public ResponseEntity<JwtResponse> register(@RequestBody @Valid UserDto dto) {
-		return ResponseEntity.ok(userService.create(dto));
+//		return ResponseEntity.ok(userService.create(dto));
+		return ResponseEntity.ok().build();
 	}
 
 

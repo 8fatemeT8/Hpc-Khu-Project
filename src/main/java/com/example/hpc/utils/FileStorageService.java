@@ -23,7 +23,7 @@ public class FileStorageService {
 
 	static {
 		try {
-			Files.createDirectories(Path.of("music")
+			Files.createDirectories(Path.of("hpc")
 					.toAbsolutePath().normalize());
 		} catch (Exception ex) {
 			throw new ExceptionHandler("Could not create the directory where the uploaded files will be stored.", ErrorCodes.ERROR_CODE_CANT_CREATE_DIRECTORY);
