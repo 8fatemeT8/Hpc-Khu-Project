@@ -10,6 +10,13 @@ public class Wallet extends EntityBase{
 
     private Long credit;
 
+    public Wallet(Long credit) {
+        this.credit = credit;
+    }
+
+    public Wallet() {
+    }
+
     public Long getCredit() {
         return credit;
     }

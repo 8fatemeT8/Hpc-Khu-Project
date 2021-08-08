@@ -7,5 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PersonRepository extends RepositoryBase<Person> {
 	Person findPersonByUserUsername(String username);
-	Person findByWallet(Wallet wallet);
 }
