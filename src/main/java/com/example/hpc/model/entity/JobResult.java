@@ -9,9 +9,19 @@ public class JobResult extends EntityBase {
     @Column(name = "execute_time")
     private long executeTime;
 
+    private String resultFileName;
+
     @ManyToOne
     @JoinColumn(name = "job_id")
     private Job job;
+
+    public String getResultFileName() {
+        return resultFileName;
+    }
+
+    public void setResultFileName(String resultFileName) {
+        this.resultFileName = resultFileName;
+    }
 
     public Job getJob() {
         return job;

@@ -27,10 +27,10 @@ public class Person  extends EntityBase{
 
     private String faculty;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Wallet wallet;
 
     @OneToMany(fetch = FetchType.LAZY)

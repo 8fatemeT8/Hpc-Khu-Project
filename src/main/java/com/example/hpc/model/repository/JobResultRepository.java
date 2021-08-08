@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JobResultRepository extends RepositoryBase<JobResult>{
+    JobResult findByResultFileName(String fileName);
 }
