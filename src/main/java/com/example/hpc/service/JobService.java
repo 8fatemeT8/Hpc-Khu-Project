@@ -54,6 +54,7 @@ public class JobService extends ServiceWithSearchBase<Job, JobDto, JobDomain,
     @Override
     @Transactional
     public void add(JobDto jobDto, Job job) {
+        job.setCreateDate(Instant.now());
         String jobFileName = fileStorageService.storeFile(jobDto.getJobFile());
         job.setJobFile(jobFileName);
 
