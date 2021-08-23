@@ -1,8 +1,8 @@
-package com.example.hpc.utils.criteria;
+package com.example.hpc.utils.filtering.criteria;
 
 
-import com.example.hpc.utils.criteria.types.IdFilter;
-import com.example.hpc.utils.criteria.types.StringFilter;
+import com.example.hpc.utils.filtering.criteria.types.IdFilter;
+import com.example.hpc.utils.filtering.criteria.types.StringFilter;
 
 public class JobCriteria {
     private StringFilter name;

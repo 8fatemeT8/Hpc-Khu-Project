@@ -1,11 +1,10 @@
-package com.example.hpc.utils.predicates;
+package com.example.hpc.utils.filtering.predicates;
 
 
 import com.example.hpc.model.entity.EntityBase;
-import com.example.hpc.utils.criteria.types.IdFilter;
-import com.example.hpc.utils.criteria.types.StringFilter;
+import com.example.hpc.utils.filtering.criteria.types.IdFilter;
+import com.example.hpc.utils.filtering.criteria.types.StringFilter;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

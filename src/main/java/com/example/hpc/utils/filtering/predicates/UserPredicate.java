@@ -1,7 +1,8 @@
-package com.example.hpc.utils.predicates;
+package com.example.hpc.utils.filtering.predicates;
 
 import com.example.hpc.model.entity.User;
-import com.example.hpc.utils.criteria.UserCriteria;
+import com.example.hpc.utils.filtering.criteria.UserCriteria;
+import com.example.hpc.utils.filtering.predicates.PredicateBase;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;

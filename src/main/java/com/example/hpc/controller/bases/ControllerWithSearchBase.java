@@ -7,7 +7,7 @@ import com.example.hpc.model.repository.RepositoryBase;
 import com.example.hpc.service.bases.ServiceWithSearchBase;
 import com.example.hpc.utils.PagedResult;
 import com.example.hpc.utils.mapper.MapperBase;
-import com.example.hpc.utils.predicates.PredicateBase;
+import com.example.hpc.utils.filtering.predicates.PredicateBase;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

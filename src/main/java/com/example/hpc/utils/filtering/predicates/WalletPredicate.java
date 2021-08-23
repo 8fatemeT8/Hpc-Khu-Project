@@ -1,7 +1,7 @@
-package com.example.hpc.utils.predicates;
+package com.example.hpc.utils.filtering.predicates;
 
 import com.example.hpc.model.entity.Wallet;
-import com.example.hpc.utils.criteria.WalletCriteria;
+import com.example.hpc.utils.filtering.criteria.WalletCriteria;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;

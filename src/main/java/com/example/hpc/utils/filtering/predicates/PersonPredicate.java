@@ -1,8 +1,7 @@
-package com.example.hpc.utils.predicates;
+package com.example.hpc.utils.filtering.predicates;
 
 import com.example.hpc.model.entity.Person;
-import com.example.hpc.utils.criteria.PersonCriteria;
-import org.springframework.data.domain.Pageable;
+import com.example.hpc.utils.filtering.criteria.PersonCriteria;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;

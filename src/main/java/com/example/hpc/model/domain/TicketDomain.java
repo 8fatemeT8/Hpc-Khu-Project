@@ -11,6 +11,16 @@ public class TicketDomain extends DomainBase{
 
     private PersonDomain person;
 
+    private int state;
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     public String getDescription() {
         return description;
     }

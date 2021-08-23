@@ -15,8 +15,8 @@ import java.util.function.Function;
 @Component
 public class JwtTokenUtil {
 
-    public static final long JWT_TOKEN_VALIDITY = 10 * 24 * 60 * 60;
-    public static final long JWT_VERIFY_LIFE_TIME = 5 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 10 * 24 * 60 * 60 * 1000;
+    public static final long JWT_VERIFY_LIFE_TIME = 5 * 60 * 1000;
     private static final long serialVersionUID = -2550185165626007488L;
 
     @Value("${jwt.secret}")

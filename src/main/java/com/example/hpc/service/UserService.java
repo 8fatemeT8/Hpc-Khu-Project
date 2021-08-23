@@ -12,13 +12,13 @@ import com.example.hpc.model.repository.UserRepository;
 import com.example.hpc.service.bases.ServiceWithSearchBase;
 import com.example.hpc.utils.EmailService;
 import com.example.hpc.utils.ThreadUtils;
-import com.example.hpc.utils.criteria.UserCriteria;
+import com.example.hpc.utils.filtering.criteria.UserCriteria;
 import com.example.hpc.utils.exceptions.ErrorCodes;
 import com.example.hpc.utils.exceptions.ExceptionHandler;
 import com.example.hpc.utils.hooks.BeforeAdd;
 import com.example.hpc.utils.hooks.BeforeUpdate;
 import com.example.hpc.utils.mapper.UserMapper;
-import com.example.hpc.utils.predicates.UserPredicate;
+import com.example.hpc.utils.filtering.predicates.UserPredicate;
 import com.example.hpc.utils.validation.ValidationUtils;
 import com.example.hpc.utils.validation.Validations;
 import org.springframework.http.HttpStatus;
@@ -124,6 +124,9 @@ public class UserService extends ServiceWithSearchBase<User, UserDto, UserDomain
         user.setRole(roleService.getByRoleName(user.getRole().getRoleName()));
 
         if (user.getEmail() != null) {
+            if (!userDto.getEmail().contains("@khu.ac"))
+                throw new ExceptionHandler("please use university email for sign up", HttpStatus.NOT_ACCEPTABLE.value());
+
             sendEmailVerify(user);
         } else {
             throw new ExceptionHandler("please enter email", ErrorCodes.ERROR_CODE_USER_DETAIL_IS_NOT_COMPLETE);

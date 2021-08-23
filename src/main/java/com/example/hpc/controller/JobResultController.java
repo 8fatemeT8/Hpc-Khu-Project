@@ -5,8 +5,10 @@ import com.example.hpc.controller.bases.ControllerBase;
 import com.example.hpc.model.domain.JobResultDomain;
 import com.example.hpc.model.dto.JobResultDto;
 import com.example.hpc.model.entity.JobResult;
+import com.example.hpc.model.entity.User;
 import com.example.hpc.model.repository.JobResultRepository;
 import com.example.hpc.service.JobResultService;
+import com.example.hpc.utils.enums.UserRoles;
 import com.example.hpc.utils.exceptions.ExceptionHandler;
 import com.example.hpc.utils.mapper.JobResultMapper;
 import org.springframework.core.io.Resource;
@@ -67,8 +69,12 @@ public class JobResultController extends ControllerBase<JobResult, JobResultDto,
 
     @GetMapping("/download/{resultFileName}")
     public ResponseEntity<Resource> downloadResultFile(@PathVariable("resultFileName") String resultName) {
-        if (!jobResultService.getByResultFileName(resultName).getJob().getPerson().getUser().getId().equals(jwtUserDetailsService.getCurrentUser().getId()))
-            throw new ExceptionHandler("you have not access to download this file", HttpStatus.NOT_ACCEPTABLE.value());
+        User user = jwtUserDetailsService.getCurrentUser();
+
+        if (user.getRole().getRoleName().equals(UserRoles.STUDENT)) {
+            if (!jobResultService.getByResultFileName(resultName).getJob().getPerson().getUser().getId().equals(user.getId()))
+                throw new ExceptionHandler("you have not access to download this file", HttpStatus.FORBIDDEN.value());
+        }
         return ResponseEntity.ok().body(jobResultService.getResultFile(resultName));
     }
 }
