@@ -58,7 +58,6 @@ public class WalletDetailService extends ServiceWithSearchBase<WalletDetail, Wal
             if (!person.getWallet().getId().equals(walletDetailMapper.toEntity(result).getWallet().getId()))
                 throw new ExceptionHandler("you cant get this object", HttpStatus.FORBIDDEN.value());
         }
-
         return result;
     }
 }
