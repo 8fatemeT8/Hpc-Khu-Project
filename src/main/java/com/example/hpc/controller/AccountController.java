@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/**
+ *  all users can call this apis and there is no filtering for access
+ */
 @RestController
 @RequestMapping("/api/account")
 public class AccountController {
@@ -25,6 +28,7 @@ public class AccountController {
 		return ResponseEntity.ok().build();
 	}
 
+	// disable create user
 	@PostMapping("/register")
 	public ResponseEntity<JwtResponse> register(@RequestBody @Valid UserDto dto) {
 //		return ResponseEntity.ok(userService.create(dto));

@@ -5,11 +5,11 @@ import com.example.hpc.model.dto.TransactionDto;
 import com.example.hpc.model.entity.Transaction;
 import com.example.hpc.model.repository.TransactionRepository;
 import com.example.hpc.service.bases.ServiceWithSearchBase;
-import com.example.hpc.utils.criteria.TransactionCriteria;
+import com.example.hpc.utils.filtering.criteria.TransactionCriteria;
 import com.example.hpc.utils.hooks.BeforeAdd;
 import com.example.hpc.utils.hooks.BeforeUpdate;
 import com.example.hpc.utils.mapper.TransactionMapper;
-import com.example.hpc.utils.predicates.TransactionPredicate;
+import com.example.hpc.utils.filtering.predicates.TransactionPredicate;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;

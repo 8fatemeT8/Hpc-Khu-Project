@@ -1,7 +1,7 @@
-package com.example.hpc.utils.predicates;
+package com.example.hpc.utils.filtering.predicates;
 
 import com.example.hpc.model.entity.WalletDetail;
-import com.example.hpc.utils.criteria.WalletDetailCriteria;
+import com.example.hpc.utils.filtering.criteria.WalletDetailCriteria;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -19,4 +19,6 @@ public class WalletDetailPredicate extends PredicateBase<WalletDetail, WalletDet
 	public List<Predicate> filter(WalletDetailCriteria walletDetailCriteria) {
 		return predicates;
 	}
+
+	// TODO : master and person can get own walletDetail
 }

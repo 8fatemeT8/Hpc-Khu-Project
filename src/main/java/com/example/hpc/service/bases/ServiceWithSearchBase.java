@@ -6,10 +6,8 @@ import com.example.hpc.model.entity.EntityBase;
 import com.example.hpc.model.repository.RepositoryBase;
 import com.example.hpc.utils.PagedResult;
 import com.example.hpc.utils.mapper.MapperBase;
-import com.example.hpc.utils.predicates.PredicateBase;
-import org.springframework.data.domain.Page;
+import com.example.hpc.utils.filtering.predicates.PredicateBase;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 

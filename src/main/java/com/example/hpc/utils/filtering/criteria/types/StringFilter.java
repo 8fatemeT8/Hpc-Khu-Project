@@ -1,7 +1,5 @@
-package com.example.hpc.utils.criteria.types;
+package com.example.hpc.utils.filtering.criteria.types;
 
-
-import com.example.hpc.utils.criteria.types.Filter;
 
 public class StringFilter extends Filter<String> {
 

@@ -1,7 +1,7 @@
-package com.example.hpc.utils.predicates;
+package com.example.hpc.utils.filtering.predicates;
 
 import com.example.hpc.model.entity.Transaction;
-import com.example.hpc.utils.criteria.TransactionCriteria;
+import com.example.hpc.utils.filtering.criteria.TransactionCriteria;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -18,4 +18,6 @@ public class TransactionPredicate extends PredicateBase<Transaction, Transaction
 	public List<Predicate> filter(TransactionCriteria transactionCriteria) {
 		return predicates;
 	}
+
+	// TODO : checking access for master and person (their get own ticket)
 }

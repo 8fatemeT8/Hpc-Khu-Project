@@ -1,7 +1,7 @@
-package com.example.hpc.utils.predicates;
+package com.example.hpc.utils.filtering.predicates;
 
 import com.example.hpc.model.entity.Ticket;
-import com.example.hpc.utils.criteria.TicketCriteria;
+import com.example.hpc.utils.filtering.criteria.TicketCriteria;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -19,4 +19,6 @@ public class TicketPredicate extends PredicateBase<Ticket, TicketCriteria> {
 	public List<Predicate> filter(TicketCriteria ticketCriteria) {
 		return predicates;
 	}
+
+	// TODO add filtering for person to get own tickets
 }

@@ -1,4 +1,4 @@
-package com.example.hpc.utils.criteria.types;
+package com.example.hpc.utils.filtering.criteria.types;
 
 import java.util.List;
 

@@ -1,3 +1,4 @@
+/*
 package com.example.hpc.controller;
 
 import com.example.hpc.controller.bases.ControllerBase;
@@ -18,3 +19,4 @@ public class UserController extends ControllerBase<User, UserDto, UserDomain, Us
         super(serviceBase);
     }
 }
+*/
