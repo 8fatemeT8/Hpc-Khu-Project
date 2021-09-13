@@ -36,22 +36,16 @@ public class PersonService extends ServiceWithSearchBase<Person, PersonDto, Pers
     private final PersonRepository personRepository;
     private final PersonMapper personMapper;
     private final UserService userService;
-    private final UserMapper userMapper;
-    private final WalletService walletService;
-    private final WalletMapper walletMapper;
     private FileStorageService fileStorageService;
     private JwtUserDetailsService jwtUserDetailsService;
 
     public PersonService(PersonRepository personRepository, PersonMapper personMapper, PersonPredicate personPredicate,
-                         UserService userService, UserMapper userMapper, WalletService walletService,
-                         WalletMapper walletMapper, FileStorageService fileStorageService, JwtUserDetailsService jwtUserDetailsService) {
+                         UserService userService,
+                         FileStorageService fileStorageService, JwtUserDetailsService jwtUserDetailsService) {
         super(personRepository, personMapper, personPredicate);
         this.personRepository = personRepository;
         this.personMapper = personMapper;
         this.userService = userService;
-        this.userMapper = userMapper;
-        this.walletService = walletService;
-        this.walletMapper = walletMapper;
         this.fileStorageService = fileStorageService;
         this.jwtUserDetailsService = jwtUserDetailsService;
     }

@@ -10,8 +10,10 @@ import com.example.hpc.model.entity.Person;
 import com.example.hpc.model.entity.User;
 import com.example.hpc.model.repository.PersonRepository;
 import com.example.hpc.service.PersonService;
+import com.example.hpc.service.ReCaptchaVerifierService;
 import com.example.hpc.utils.PagedResult;
 import com.example.hpc.utils.enums.UserRoles;
+import com.example.hpc.utils.exceptions.ExceptionHandler;
 import com.example.hpc.utils.filtering.criteria.PersonCriteria;
 import com.example.hpc.utils.mapper.PersonMapper;
 import com.example.hpc.utils.filtering.predicates.PersonPredicate;
@@ -33,16 +35,23 @@ public class PersonController extends ControllerWithSearchBase<Person, PersonDto
     private PersonService personService;
     private final UserAuthentication userAuthentication;
     private JwtUserDetailsService jwtUserDetailsService;
+    private ReCaptchaVerifierService reCaptchaVerifierService;
 
-    public PersonController(PersonService personService, UserAuthentication userAuthentication, JwtUserDetailsService jwtUserDetailsService) {
+    public PersonController(PersonService personService, UserAuthentication userAuthentication,
+                            JwtUserDetailsService jwtUserDetailsService, ReCaptchaVerifierService reCaptchaVerifierService) {
         super(personService);
         this.personService = personService;
         this.userAuthentication = userAuthentication;
         this.jwtUserDetailsService = jwtUserDetailsService;
+        this.reCaptchaVerifierService = reCaptchaVerifierService;
     }
 
     @PostMapping("/account")
-    public ResponseEntity<JwtResponse> createPerson(@Valid @RequestBody PersonDto personDto) {
+    public ResponseEntity<JwtResponse> createPerson(@Valid @RequestBody PersonDto personDto, @RequestParam(name = "g-recaptcha-response") String recaptchaResponse) {
+        boolean verified = reCaptchaVerifierService.verify(recaptchaResponse);
+        if (!verified) {
+            throw new ExceptionHandler("RECAPTCHA_VERIFICATION_ERROR", HttpStatus.NOT_ACCEPTABLE.value());
+        }
         super.create(personDto);
         return ResponseEntity.ok(userAuthentication.authenticate(personDto.getUser().getUsername(), personDto.getUser().getPassword()));
     }

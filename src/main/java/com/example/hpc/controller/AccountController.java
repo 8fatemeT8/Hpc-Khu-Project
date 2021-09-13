@@ -3,7 +3,10 @@ package com.example.hpc.controller;
 import com.example.hpc.config.jwt.JwtResponse;
 import com.example.hpc.model.dto.ChangePasswordDto;
 import com.example.hpc.model.dto.UserDto;
+import com.example.hpc.service.ReCaptchaVerifierService;
 import com.example.hpc.service.UserService;
+import com.example.hpc.utils.exceptions.ExceptionHandler;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +20,11 @@ import javax.validation.Valid;
 public class AccountController {
 
 	private UserService userService;
+	private ReCaptchaVerifierService reCaptchaVerifierService;
 
-	public AccountController(UserService userService) {
+	public AccountController(UserService userService, ReCaptchaVerifierService reCaptchaVerifierService) {
 		this.userService = userService;
+		this.reCaptchaVerifierService = reCaptchaVerifierService;
 	}
 
 	@GetMapping("/verify")
@@ -37,7 +42,11 @@ public class AccountController {
 
 
 	@GetMapping("/login")
-	public ResponseEntity<JwtResponse> login(@RequestBody @Valid UserDto dto) {
+	public ResponseEntity<JwtResponse> login(@RequestBody @Valid UserDto dto, @RequestParam(name = "g-recaptcha-response") String recaptchaResponse) {
+		boolean verified = reCaptchaVerifierService.verify(recaptchaResponse);
+		if (!verified) {
+			throw new ExceptionHandler("RECAPTCHA_VERIFICATION_ERROR", HttpStatus.NOT_ACCEPTABLE.value());
+		}
 		return ResponseEntity.ok(userService.login(dto));
 	}
 
