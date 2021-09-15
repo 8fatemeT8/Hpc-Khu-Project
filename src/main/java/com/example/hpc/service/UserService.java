@@ -12,6 +12,7 @@ import com.example.hpc.model.repository.UserRepository;
 import com.example.hpc.service.bases.ServiceWithSearchBase;
 import com.example.hpc.utils.EmailService;
 import com.example.hpc.utils.ThreadUtils;
+import com.example.hpc.utils.enums.UserRoles;
 import com.example.hpc.utils.filtering.criteria.UserCriteria;
 import com.example.hpc.utils.exceptions.ErrorCodes;
 import com.example.hpc.utils.exceptions.ExceptionHandler;
@@ -28,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.Optional;
 
 @Service
@@ -70,6 +72,11 @@ public class UserService extends ServiceWithSearchBase<User, UserDto, UserDomain
 
         if (user.getEmail() == null)
             throw new ExceptionHandler("email field must not be null", HttpStatus.NOT_ACCEPTABLE.value());
+
+        if (user.getId() == null) {
+            if (Arrays.asList(UserRoles.SYS_ADMIN, UserRoles.ADMIN).contains(user.getRole().getRoleName()))
+                throw new ExceptionHandler("just student and master able to sign up ", HttpStatus.FORBIDDEN.value());
+        }
     }
 
     public JwtResponse create(UserDto dto) {
