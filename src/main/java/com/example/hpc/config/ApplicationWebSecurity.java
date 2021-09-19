@@ -74,7 +74,8 @@ public class ApplicationWebSecurity extends WebSecurityConfigurerAdapter {
                         "/assets/fonts/**",
                         "/assets/images/**",
                         "/api/account/forget-password",
-                "/api/user/recaptcha"
+                "/api/user/recaptcha",
+                "/api/account/v2/login"
                 ).permitAll()
                 // all other requests need to be authenticated
                 .anyRequest().authenticated().and()

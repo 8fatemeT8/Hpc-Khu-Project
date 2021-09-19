@@ -26,7 +26,7 @@ public class ReCaptchaVerifierService {
         CaptchaResponseDto captchaResponseDto = this.restClient.getForObject(verifyUri, CaptchaResponseDto.class);
 
         if (captchaResponseDto != null && !captchaResponseDto.isSuccess()) {
-            return recaptchaResponse != null;
+            return recaptchaResponse != null && !recaptchaResponse.isBlank();
         }
         return true;
     }

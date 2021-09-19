@@ -14,6 +14,26 @@ public class UserDto extends DtoBase {
 
 	private RoleDto role;
 
+	private String reCaptchaResponse;
+
+	public UserDto(String username, String password, String email, RoleDto role) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.role = role;
+	}
+
+	public UserDto() {
+	}
+
+	public String getReCaptchaResponse() {
+		return reCaptchaResponse;
+	}
+
+	public void setReCaptchaResponse(String reCaptchaResponse) {
+		this.reCaptchaResponse = reCaptchaResponse;
+	}
+
 	public RoleDto getRole() {
 		return role;
 	}

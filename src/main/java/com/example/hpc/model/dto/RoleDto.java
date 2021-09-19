@@ -5,6 +5,13 @@ public class RoleDto extends DtoBase{
 
     private String description;
 
+    public RoleDto(Integer roleName) {
+        this.roleName = roleName;
+    }
+
+    public RoleDto() {
+    }
+
     public String getDescription() {
         return description;
     }

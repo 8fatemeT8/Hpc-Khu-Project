@@ -27,6 +27,9 @@ public class Person  extends EntityBase{
 
     private String faculty;
 
+    @Column(name = "student_prof_number")
+    private String studentProfNumber;
+
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 

@@ -1,5 +1,7 @@
 package com.example.hpc.model.dto;
 
+import com.example.hpc.utils.validation.Password;
+
 public class PersonDto extends DtoBase{
     private String firstName;
 
@@ -15,7 +17,46 @@ public class PersonDto extends DtoBase{
 
     private String faculty;
 
-    private UserDto user;
+    private String email;
+
+    @Password
+    private String password;
+
+    private String studentProfNumber;
+
+    private int role;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getStudentProfNumber() {
+        return studentProfNumber;
+    }
+
+    public void setStudentProfNumber(String studentProfNumber) {
+        this.studentProfNumber = studentProfNumber;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -73,12 +114,5 @@ public class PersonDto extends DtoBase{
         this.faculty = faculty;
     }
 
-    public UserDto getUser() {
-        return user;
-    }
-
-    public void setUser(UserDto user) {
-        this.user = user;
-    }
 
 }

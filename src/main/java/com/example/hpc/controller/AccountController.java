@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 /**
- *  all users can call this apis and there is no filtering for access
+ * all users can call this apis and there is no filtering for access
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/api/account")
 public class AccountController {
@@ -42,7 +43,7 @@ public class AccountController {
 
 
 	@GetMapping("/login")
-	public ResponseEntity<JwtResponse> login(@RequestBody @Valid UserDto dto, @RequestParam(name = "g-recaptcha-response") String recaptchaResponse) {
+	public ResponseEntity<JwtResponse> login(@RequestBody UserDto dto, @RequestParam(name = "g-recaptcha-response") String recaptchaResponse) {
 		boolean verified = reCaptchaVerifierService.verify(recaptchaResponse);
 		if (!verified) {
 			throw new ExceptionHandler("RECAPTCHA_VERIFICATION_ERROR", HttpStatus.NOT_ACCEPTABLE.value());
@@ -50,9 +51,18 @@ public class AccountController {
 		return ResponseEntity.ok(userService.login(dto));
 	}
 
+	@GetMapping("/v2/login")
+	public ResponseEntity<JwtResponse> loginV2(@RequestBody UserDto dto) {
+		boolean verified = reCaptchaVerifierService.verify(dto.getReCaptchaResponse());
+		if (!verified) {
+			throw new ExceptionHandler("RECAPTCHA_VERIFICATION_ERROR", HttpStatus.NOT_ACCEPTABLE.value());
+		}
+		return ResponseEntity.ok(userService.login(dto));
+	}
+
 	@PostMapping("/forget-password")
-	public ResponseEntity<?> forgetPassword(String username) {
-		userService.forgetPassWord(username);
+	public ResponseEntity<?> forgetPassword(String email) {
+		userService.forgetPassWord(email);
 		return ResponseEntity.ok("ok");
 	}
 

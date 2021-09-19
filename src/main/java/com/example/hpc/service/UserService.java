@@ -29,7 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import java.time.Instant;
-import java.util.Arrays;
 import java.util.Optional;
 
 @Service
@@ -72,11 +71,6 @@ public class UserService extends ServiceWithSearchBase<User, UserDto, UserDomain
 
         if (user.getEmail() == null)
             throw new ExceptionHandler("email field must not be null", HttpStatus.NOT_ACCEPTABLE.value());
-
-        if (user.getId() == null) {
-            if (Arrays.asList(UserRoles.SYS_ADMIN, UserRoles.ADMIN).contains(user.getRole().getRoleName()))
-                throw new ExceptionHandler("just student and master able to sign up ", HttpStatus.FORBIDDEN.value());
-        }
     }
 
     public JwtResponse create(UserDto dto) {
@@ -99,9 +93,9 @@ public class UserService extends ServiceWithSearchBase<User, UserDto, UserDomain
         userRepository.save(user);
     }
 
-    public void forgetPassWord(String username) {
+    public void forgetPassWord(String email) {
         final String forgetPasswordPageUrl = "http://localhost:8085/account/reset-password?key=";
-        Optional<User> user = userRepository.findByUsername(username);
+        Optional<User> user = userRepository.findByUsername(email);
         if (user.isEmpty())
             throw new ExceptionHandler("email.not.exist", ErrorCodes.ERROR_CODE_EMAIL_NOT_EXIST);
         final String token = jwtTokenUtil.generateToken(user.get(), JwtTokenUtil.JWT_VERIFY_LIFE_TIME);
@@ -128,7 +122,7 @@ public class UserService extends ServiceWithSearchBase<User, UserDto, UserDomain
     @Transactional
     public void add(UserDto userDto, User user) {
         user.setCreateDate(Instant.now());
-        user.setRole(roleService.getByRoleName(user.getRole().getRoleName()));
+        user.setRole(roleService.getByRoleName(UserRoles.fromKey(userDto.getRole().getRoleName())));
 
         if (user.getEmail() != null) {
             if (!userDto.getEmail().contains("@khu.ac"))
@@ -141,7 +135,6 @@ public class UserService extends ServiceWithSearchBase<User, UserDto, UserDomain
         // encrypt password
         user.setPassword(encoder.encode(userDto.getPassword()));
 
-        user.setCreateDate(Instant.now());
     }
 
     /**
@@ -174,5 +167,9 @@ public class UserService extends ServiceWithSearchBase<User, UserDto, UserDomain
             } catch (MessagingException e) {
             }
         });
+    }
+
+    public User getByUsername (String username){
+        return userRepository.findByUsername(username).get();
     }
 }
